@@ -9,16 +9,15 @@ pipeline{
      stage("Maven Build"){
        steps{
             sh "/opt/apache-maven-3.8.3/bin/mvn package"
-            sh "mv target/*.war target/myweb.war"
              }
             }
      stage("deploy-dev"){
        steps{
           sshagent(['18.206.249.222']) {
           sh """
-          scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins3/webapp/target/webapp.war ubuntu@18.206.249.222:/opt/apache-tomcat-9.0.54/webapps 
-          ssh ubuntu@18.206.249.222/opt/apache-tomcat-9.0.54/bin/shutdown.sh
-          ssh ubuntu@18.206.249.222/opt/apache-tomcat-9.0.54/bin/startup.sh
+          scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins3/webapp/target/webapp.war ubuntu@18.206.249.222:/opt/apache-tomcat-8.5.72/webapps 
+          ssh ubuntu@18.206.249.222/opt/apache-tomcat-8.5.72/bin/shutdown.sh
+          ssh ubuntu@18.206.249.222/opt/apache-tomcat-8.5.72/bin/startup.sh
            """
             }
           }
