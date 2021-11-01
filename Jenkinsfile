@@ -16,8 +16,8 @@ pipeline{
           sshagent(['18.206.249.222']) {
           sh """
           scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/jenkins3/webapp/target/webapp.war ubuntu@18.206.249.222:/opt/apache-tomcat-8.5.72/webapps 
-          ssh ubuntu@18.206.249.222/opt/apache-tomcat-8.5.72/bin/shutdown.sh
-          ssh ubuntu@18.206.249.222/opt/apache-tomcat-8.5.72/bin/startup.sh
+          ssh ubuntu@18.206.249.222 /opt/apache-tomcat-8.5.72/bin/shutdown.sh
+          ssh ubuntu@18.206.249.222 /opt/apache-tomcat-8.5.72/bin/startup.sh
            """
             }
           }
